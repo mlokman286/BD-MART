@@ -1,0 +1,71 @@
+<nav class='px-5 pt-5'>
+    <div class="flex justify-between ">
+        <div>
+            <a href="{% url "home" %}" class="text-3xl italic"><span class="text-red-400 font-bold">BD </span> <span  class=" font-bold text-green-400">Mart</span></a>
+            </div>
+            
+            <div class='flex gap-5'>
+                <form action="" method="post" class='flex gap-2'>
+                    {% csrf_token %}
+                    <input class='outline-none border-b-4 border-sky-500 px-5 rounded' type="search" name="" id="" placeholder='Search...'>
+                    <button class='bg-green-500 hover:bg-green-600 px-3 py-0 rounded' type="submit">Search</button>
+                </form>
+                <div class="dropdown">
+                    <label tabindex="0" class="btn m-1">Menu</label>
+                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><a href="{% url "home" %}">Home</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">SignIn</a></li>
+                        <li><a href="">SignUp</a></li>
+                        <li><a href="">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %}  {% endcomment %}
+    <menu class = 'bg-green-200 py-1 mt-5'>
+        <div class='flex'>
+            
+            <ul class='flex gap-10 text-xl'>
+                <li>
+                    <div class="drawer">
+                        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+                        <div class="drawer-content">
+                            <!-- Page content here -->
+                            <label for="my-drawer" class=" drawer-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                </svg>
+
+                                </label>
+                        </div> 
+                        <div class="drawer-side">
+                            <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                            <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                            <!-- Sidebar content here -->
+                            <li><a href="">Home</a></li>
+                            <li><a href="">Contact</a></li>
+                            <li><a href="">SignIn</a></li>
+                            <li><a href="">SignUp</a></li>
+                            <li><a href="">Login</a></li>
+                
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="{% url "home" %}">Home</a></li>
+                <li><a href="{% url "menProduct" %}">Men's Product</a></li>
+                <li><a href="">Women's Product</a></li>
+                <li><a href="">Children's Product</a></li>
+                <li><a href="">Accessories</a></li>
+                <li><a href="">Toys</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">SignIn</a></li>
+                <li><a href="">SignUp</a></li>
+                <li><a href="">Login</a></li>
+            </ul>
+        </div>
+    </menu>
+</nav>
+
