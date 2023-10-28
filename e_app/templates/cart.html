@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <section class='w-10/12 mx-auto'>
+        <div class="border-l-[50px] border-t-2 border-gray-600/50 mt-10">
+            <h1 class='text-3xl text-center text-green-600'>Your Choosen item</h1>
+        </div>
+        <div>
+            <ul>
+                {% for item in cart_items %}
+                <li class="cart-item flex justify-between items-center p-3 border-b-2 border-slate-800">
+                    <div class="flex items-center">
+                        <div class="font-bold mr-3 flex-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ item.product.title }}</div>
+                        <form action="{% url 'removeFromCart' item.product.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-error" type="submit">Remove</button>
+                        </form>
+                    </div>
+                    <div class="flex items-center mr-3">
+                        <form action="{% url 'increase-cart-item' item.product.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-outline btn-error hover:btn-success increase-quantity" type="submit">+</button>
+                        </form>
+                        <span class="item-quantity">{{ item.quantity }}</span>
+                        <form action="{% url 'decrease-cart-item' item.product.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-outline btn-error hover:btn-error decrease-quantity" type="submit">-</button>
+                        </form>
+                    </div>
+                    <div class="font-bold" data-price="{{ item.product.price }}">
+                        ${{ item.product.price }}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <a class="inline-block mt-5 text-[#3498db] font-bold hover:underline" href="{% url 'productList' %}">Continue Shopping</a>
+
+            <a class="inline-block mt-5 bg-green-500 text-white px-3 py-5 transition delay-1000 font-bold hover:underline hover:bg-green-700" href="#">Checkout</a>
+        </div>       
+    </section>
+    <script src="{% static 'js/cart.js' %}"></script>
+{% endblock content %}

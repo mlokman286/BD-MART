@@ -3,56 +3,14 @@
 
 {% block content %}
     <section class='w-10/12 mx-auto'>
+        {% include "includes/message.html" %}
         {% comment %} carousel Part {% endcomment %}
-        <div class='mt-5'>
-            <div class="carousel">
-                <div id="slide1" class="carousel-item relative w-full">
-                    <img src="media/slides/slide1.jpg" class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide6" class="btn btn-circle">❮</a> 
-                    <a href="#slide2" class="btn btn-circle">❯</a>
-                    </div>
-                </div> 
-                <div id="slide2" class="carousel-item relative w-full">
-                    <img src="media/slides/slide2.jpg" class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide1" class="btn btn-circle">❮</a> 
-                    <a href="#slide3" class="btn btn-circle">❯</a>
-                    </div>
-                </div> 
-                <div id="slide3" class="carousel-item relative w-full">
-                    <img src="media/slides/slide3.jpg" class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide2" class="btn btn-circle">❮</a> 
-                    <a href="#slide4" class="btn btn-circle">❯</a>
-                    </div>
-                </div> 
-                <div id="slide4" class="carousel-item relative w-full">
-                    <img src="media/slides/slide4.jpg" class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide3" class="btn btn-circle">❮</a> 
-                    <a href="#slide5" class="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide5" class="carousel-item relative w-full">
-                    <img src="media/slides/slide5.jpg" class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide4" class="btn btn-circle">❮</a> 
-                    <a href="#slide6" class="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide6" class="carousel-item relative w-full">
-                    <img src="media/slides/slide6.jpg" class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href="#slide5" class="btn btn-circle">❮</a> 
-                    <a href="#slide1" class="btn btn-circle">❯</a>
-                    </div>
-                </div>
-            </div>
+        <div class='my-5'>
+            {% include "includes/carousel.html" %}
         </div>
             {% comment %} boy products {% endcomment %}
         <div class='mt-10'>
-            <a href="{% url "menProduct" %}">
+            <a href="{% url "productList" %}">
                 <div class="border-l-[50px] border-t-2 border-gray-600/50">
                     <h1 class="text-2xl ml-5">Men's Product</h1>
                     <p class='ml-5'>See More..</p>
@@ -68,7 +26,7 @@
                             </a>
                             <p><span class="font-bold">Price:</span>  {{product.price}} TK</p>
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
+                                {% include "includes/button.html" %}
                             </div>
                         </div>
                     </div>
