@@ -8,11 +8,23 @@ from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def home(request):
-    productsM = Product.objects.all()[:4]
+    productsM = Product.objects.filter(catagory= 1)[:4]
+    productsF = Product.objects.filter(catagory= 2)[:4]
+    productsC = Product.objects.filter(catagory= 3)[:4]
+    productsA = Product.objects.filter(catagory= 4)[:4]
+    productsT = Product.objects.filter(catagory= 5)[:4]
     context ={
-        'productsM':productsM
+        'maleproduct':productsM,
+        'femaleproduct':productsF,
+        'childproduct':productsC,
+        'accessoryproduct':productsA,
+        'toyProducts':productsT,
     }
     return render(request,'home.html',context)
+
+def contactPage(request):
+
+    return render(request,'contact.html')
 
 def signupPage(request):
     if not request.user.is_authenticated:
@@ -57,24 +69,53 @@ def signout(request):
     logout(request)
     return redirect('signin')
 
-def productList(request):
-    productsM = Product.objects.all
+def menProducts(request):
+    productsM = Product.objects.filter(catagory= 1)
     context ={
-        'productsM':productsM
+        'maleproduct':productsM
     }
     return render(request,'mens/menProduct.html',context)
+
+def womenProducts(request):
+    productsM = Product.objects.filter(catagory= 2)
+    context ={
+        'femaleproduct':productsM
+    }
+    return render(request,'women/womenProduct.html',context)
+
+def childProducts(request):
+    productsC = Product.objects.filter(catagory= 3)
+    context ={
+        'childproducts':productsC
+    }
+    return render(request,'childs/childsProduct.html',context)
+
+def accessoryProducts(request):
+    products = Product.objects.filter(catagory= 4)
+    context ={
+        'products':products
+    }
+    return render(request,'accessories/accessories.html',context)
+
+def toyProducts(request):
+    products = Product.objects.filter(catagory= 5)
+    context ={
+        'toyProducts':products
+    }
+    return render(request,'Toys/toys.html',context)
 
 def productDetails(request,id):
     product = Product.objects.get(id=id)
     return render(request,'productDetails.html',{'product':product})
 
+@login_required
 def cartPage(request,):
     cart = request.user.cart
     cart_items = CartItem.objects.filter(cart=cart)
     return render(request,'cart.html',{'cart_items': cart_items})
 
+@login_required
 def addToCart(request,id):
-    productList = []
     product = Product.objects.get(pk=id)
     cart,created = Cart.objects.get_or_create(user=request.user)
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
@@ -82,8 +123,9 @@ def addToCart(request,id):
     if not item_created:
         cart_item.quantity += 1
         cart_item.save()
-    return redirect('productList')
+    return redirect('home')
 
+@login_required
 def removeFromCart(request, product_id):
     product = Product.objects.get(pk=product_id)
     cart = Cart.objects.get(user=request.user)
@@ -96,6 +138,7 @@ def removeFromCart(request, product_id):
         pass
     return redirect('cart')
 
+@login_required
 def increase_cart_item(request, product_id):
     product = Product.objects.get(pk=product_id)
     cart = request.user.cart
@@ -106,6 +149,7 @@ def increase_cart_item(request, product_id):
 
     return redirect('cart')
 
+@login_required
 def decrease_cart_item(request, product_id):
     product = Product.objects.get(pk=product_id)
     cart = request.user.cart
@@ -119,6 +163,7 @@ def decrease_cart_item(request, product_id):
 
     return redirect('cart')
 
+@login_required
 def fetch_cart_count(request):
     cart_count = 0
     if request.user.is_authenticated:
@@ -126,6 +171,7 @@ def fetch_cart_count(request):
         cart_count = CartItem.objects.filter(cart=cart).count()
     return JsonResponse({'cart_count': cart_count})
 
+@login_required
 def get_cart_count(request):
     if request.user.is_authenticated:
         cart_items = CartItem.objects.filter(cart=request.user.cart)

@@ -3,10 +3,15 @@ from .views import *
 
 urlpatterns = [
     path('',home ,name='home'),
+    path('contact',contactPage ,name='contact'),
     path('signup',signupPage ,name='signup'),
     path('signin',signinPage ,name='signin'),
     path('signout',signout ,name='signout'),
-    path('productList',productList ,name='productList'),
+    path('menProducts',menProducts ,name='menProducts'),
+    path('womenProducts',womenProducts ,name='womenProducts'),
+    path('childProducts',childProducts ,name='childProducts'),
+    path('accessories',accessoryProducts ,name='accessories'),
+    path('toys',toyProducts ,name='toys'),
     path('product/<str:id>',productDetails ,name='product'),
     path('cart/',cartPage ,name='cart'),
     path('addtocart/<str:id>',addToCart ,name='addtocart'),

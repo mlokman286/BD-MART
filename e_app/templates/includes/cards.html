@@ -1,0 +1,14 @@
+<div class="card w-96 bg-base-100 shadow-xl">
+    <figure class=''>
+        <img class='w-cover p-14' src="{{product.img.url}}" alt="Shoes" />
+    </figure>
+    <div class="card-body">
+        <a href="{% url "product" product.id %}" class=''>
+            <h2 class="card-title hover:underline">{{product.title}}</h2>
+        </a>
+        <p><span class="font-bold">Price:</span>  {{product.price}} TK</p>
+        <div class="card-actions justify-end">
+            {% include "includes/button.html" %}
+        </div>
+    </div>
+</div>

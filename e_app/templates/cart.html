@@ -14,7 +14,7 @@
                         <div class="font-bold mr-3 flex-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ item.product.title }}</div>
                         <form action="{% url 'removeFromCart' item.product.id %}" method="post">
                             {% csrf_token %}
-                            <button class="btn btn-error" type="submit">Remove</button>
+                            <button class="btn bg-orange-500 hover:bg-red-500" type="submit">Remove</button>
                         </form>
                     </div>
                     <div class="flex items-center mr-3">
@@ -34,10 +34,10 @@
                 </li>
                 {% endfor %}
             </ul>
-            <a class="inline-block mt-5 text-[#3498db] font-bold hover:underline" href="{% url 'productList' %}">Continue Shopping</a>
+            <a class="btn mt-5 bg-green-600 font-bold  hover:underline rounded-lg" href="{% url 'home' %}">Continue Shopping</a>
 
-            <a class="inline-block mt-5 bg-green-500 text-white px-3 py-5 transition delay-1000 font-bold hover:underline hover:bg-green-700" href="#">Checkout</a>
+            <a class="btn mt-5 bg-sky-500 rounded-lg font-bold hover:underline hover:bg-green-700" href="#">Checkout</a>
         </div>       
     </section>
-    <script src="{% static 'js/cart.js' %}"></script>
+    
 {% endblock content %}

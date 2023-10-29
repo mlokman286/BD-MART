@@ -4,15 +4,14 @@
 {% block content %}
     <section class='w-10/12 mx-auto' >
         <div class="border-l-[50px] border-t-2 border-gray-600/50 mt-10">
-            <h1 class='text-3xl text-center'>Our Best Product for Men</h1>
+            <h1 class='text-3xl text-center'>Our Best Product for Children</h1>
         </div>
         <div>
             <div class="products grid grid-cols-4 gap-4 mt-5">
-                {% for product in maleproduct %}
+                {% for product in childproducts %}
                     {% include 'includes/cards.html' %}
                 {% endfor %}
             </div>
         </div>
     </section>
 {% endblock content %}
-

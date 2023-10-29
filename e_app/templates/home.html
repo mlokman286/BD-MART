@@ -10,31 +10,74 @@
         </div>
             {% comment %} boy products {% endcomment %}
         <div class='mt-10'>
-            <a href="{% url "productList" %}">
+            <a href="{% url "menProducts" %}">
                 <div class="border-l-[50px] border-t-2 border-gray-600/50">
                     <h1 class="text-2xl ml-5">Men's Product</h1>
                     <p class='ml-5'>See More..</p>
                 </div>
             </a>
             <div class="products grid grid-cols-4 gap-4 mt-5">
-                {% for product in productsM %}
-                    <div class="card w-96 bg-base-100 shadow-xl">
-                        <figure><img class='w-full' src="{{product.img.url}}" alt="Shoes" /></figure>
-                        <div class="card-body">
-                            <a href="{% url "product" product.id %}" class=''>
-                                <h2 class="card-title hover:underline">{{product.title}}</h2>
-                            </a>
-                            <p><span class="font-bold">Price:</span>  {{product.price}} TK</p>
-                            <div class="card-actions justify-end">
-                                {% include "includes/button.html" %}
-                            </div>
-                        </div>
-                    </div>
+                {% for product in maleproduct %}
+                    {% include 'includes/cards.html' %}
                 {% endfor %}
             </div>
         </div>
             {% comment %} girls products {% endcomment %}
-
+        <div class='mt-10'>
+            <a href="{% url "womenProducts" %}">
+                <div class="border-l-[50px] border-t-2 border-gray-600/50">
+                    <h1 class="text-2xl ml-5">Women's Product</h1>
+                    <p class='ml-5'>See More..</p>
+                </div>
+            </a>
+            <div class="products grid grid-cols-4 gap-4 mt-5">
+                {% for product in femaleproduct %}
+                    {% include 'includes/cards.html' %}
+                {% endfor %}
+            </div>
+        </div>
+        {% comment %} Children item {% endcomment %}
+        <div class='mt-10'>
+            <a href="{% url "childProducts" %}">
+                <div class="border-l-[50px] border-t-2 border-gray-600/50">
+                    <h1 class="text-2xl ml-5">Children's Product</h1>
+                    <p class='ml-5'>See More..</p>
+                </div>
+            </a>
+            <div class="products grid grid-cols-4 gap-4 mt-5">
+                {% for product in childproduct %}
+                    {% include 'includes/cards.html' %}
+                {% endfor %}
+            </div>
+        </div>
+        {% comment %} Accessories items {% endcomment %}
+        <div class='mt-10'>
+            <a href="{% url "accessories" %}">
+                <div class="border-l-[50px] border-t-2 border-gray-600/50">
+                    <h1 class="text-2xl ml-5">Accessories</h1>
+                    <p class='ml-5'>See More..</p>
+                </div>
+            </a>
+            <div class="products grid grid-cols-4 gap-4 mt-5">
+                {% for product in accessoryproduct %}
+                    {% include 'includes/cards.html' %}
+                {% endfor %}
+            </div>
+        </div>
+            {% comment %} Products Toy {% endcomment %}
+        <div class='mt-10'>
+            <a href="{% url "toys" %}">
+                <div class="border-l-[50px] border-t-2 border-gray-600/50">
+                    <h1 class="text-2xl ml-5">Kids Toys</h1>
+                    <p class='ml-5'>See More..</p>
+                </div>
+            </a>
+            <div class="products grid grid-cols-4 gap-4 mt-5">
+                {% for product in toyProducts %}
+                    {% include 'includes/cards.html' %}
+                {% endfor %}
+            </div>
+        </div>
             
     </section>
 {% endblock content %}
