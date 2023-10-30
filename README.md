@@ -1,7 +1,7 @@
 # BD-MART
 
-## Noticce
+## Notice
 #### 1.You should setup virtual environment
 #### 2.install django, pillow , tinymce
-##### 3.Then run the project
+#### 3.Then run the project
 
