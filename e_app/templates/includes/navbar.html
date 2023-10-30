@@ -86,7 +86,6 @@
                 </ul>
             </div>
             
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
             {% if request.user.is_authenticated %}
             <div class='text-xl font-bold flex gap-2'>
                 <p>{{request.user.get_full_name}}</p>
@@ -97,10 +96,11 @@
                     </svg>
                     Cart
                 </a>
-                {% comment %} {% if cart_count == 0 %} {% endcomment %}
+                {% if cart_count == 0 %}
                 <span></span>
-                {% comment %} {% else %} {% endcomment %}
+                {% else %}
                 <span class="cart-count">{{ cart_count }}</span>
+                {% endif %}
             </div>
             {% endif %}
             {% comment %} {% endif %} {% endcomment %}

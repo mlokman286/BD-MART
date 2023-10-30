@@ -4,6 +4,7 @@ function updateCartCount() {
         .then(response => response.json())
         .then(data => {
             cartCount.textContent = data.cart_count;
+            return cartCount;
         });
 }
 

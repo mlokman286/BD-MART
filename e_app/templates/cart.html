@@ -11,25 +11,25 @@
                 {% for item in cart_items %}
                 <li class="cart-item flex justify-between items-center p-3 border-b-2 border-slate-800">
                     <div class="flex items-center">
-                        <div class="font-bold mr-3 flex-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ item.product.title }}</div>
+                        <div class="font-bold mr-3 flex-1 whitespace-nowrap overflow-hidden text-ellipsis">{{ item.product.name }}</div>
                         <form action="{% url 'removeFromCart' item.product.id %}" method="post">
                             {% csrf_token %}
                             <button class="btn bg-orange-500 hover:bg-red-500" type="submit">Remove</button>
                         </form>
                     </div>
                     <div class="flex items-center mr-3">
-                        <form action="{% url 'increase-cart-item' item.product.id %}" method="post">
+                        <form action="{% url 'increaseCartItem' item.product.id %}" method="post">
                             {% csrf_token %}
-                            <button class="btn btn-outline btn-error hover:btn-success increase-quantity" type="submit">+</button>
+                            <button class="btn btn-outline btn-error hover:btn-success increase-quantity" type="submit">◀</button>
                         </form>
-                        <span class="item-quantity">{{ item.quantity }}</span>
-                        <form action="{% url 'decrease-cart-item' item.product.id %}" method="post">
+                        <span class="item-quantity mx-2">{{ item.quantity }}</span>
+                        <form action="{% url 'decreaseCartItem' item.product.id %}" method="post">
                             {% csrf_token %}
-                            <button class="btn btn-outline btn-error hover:btn-error decrease-quantity" type="submit">-</button>
+                            <button class="btn btn-outline btn-error hover:btn-error decrease-quantity" type="submit">▶</button>
                         </form>
                     </div>
-                    <div class="font-bold" data-price="{{ item.product.price }}">
-                        ${{ item.product.price }}
+                    <div class="font-bold cart-item-price" data-price="{{ item.product.price }}">
+                        BDT {{ item.product.price }}
                     </div>
                 </li>
                 {% endfor %}

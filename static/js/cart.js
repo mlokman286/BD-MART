@@ -2,7 +2,13 @@ const increaseButtons = document.querySelectorAll(".increase-quantity");
 const decreaseButtons = document.querySelectorAll(".decrease-quantity");
 const quantityElements = document.querySelectorAll(".item-quantity");
 const priceElements = document.querySelectorAll(".cart-item-price");
+const addToCart = document.querySelectorAll(".addToCart")
 
+addToCart.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+    })
+})
 increaseButtons.forEach((button, index) => {
     button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -35,5 +41,5 @@ decreaseButtons.forEach((button, index) => {
 
 function updateCartItemPrice(priceElement, pricePerItem, quantity) {
     const totalPrice = (pricePerItem * quantity).toFixed(2);
-    priceElement.textContent = "$" + totalPrice;
+    priceElement.textContent = "BDT" + totalPrice;
 }

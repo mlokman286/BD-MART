@@ -123,7 +123,7 @@ def addToCart(request,id):
     if not item_created:
         cart_item.quantity += 1
         cart_item.save()
-    return redirect('home')
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 @login_required
 def removeFromCart(request, product_id):

@@ -11,7 +11,7 @@ class Catagories(models.Model):
         return self.name
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    title = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     catagory=models.ForeignKey(Catagories, on_delete=models.DO_NOTHING)
     description =tinymce_models.HTMLField()
     date=models.DateField(auto_now=False, auto_now_add=True)
@@ -19,15 +19,8 @@ class Product(models.Model):
     price=models.IntegerField()
     img = models.ImageField(upload_to='men',null=True,)
     def __str__(self):
-        return self.title
+        return self.name
     
-    
-class CartItem(models.Model):
-    cart = models.ForeignKey("Cart", on_delete=models.CASCADE)
-    product = models.ForeignKey("Product", on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    def __str__(self):
-        return f"{self.quantity} x {self.product.name}"
     
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -37,3 +30,10 @@ class Cart(models.Model):
     
 User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
 User.cart = property(lambda u: Cart.objects.get_or_create(user=u)[0])
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    def __str__(self):
+        return f"{self.quantity} X {self.product.name}"
